@@ -10,7 +10,7 @@ export class UsersController {
         private readonly usersService: UsersService
     ) {}
 
-    @Post()
+    @Post('/register')
     @UsePipes(ValidationPipe)
     async createUser(@Body() createUser: CreateUserDto): Promise<UserEntity> {
         return this.usersService.createUser(createUser);
