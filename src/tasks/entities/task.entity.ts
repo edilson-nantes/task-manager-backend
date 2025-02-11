@@ -15,7 +15,7 @@ export class TaskEntity {
   status: string;
 
   @Column({ name: 'user_id', nullable: false })
-  user_id: number;
+  userId: number;
 
   @CreateDateColumn({ name: 'created_at' })
   created_at: Date;
