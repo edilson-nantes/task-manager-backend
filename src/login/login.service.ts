@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import { LoginDto } from './dto/login.dto';
@@ -11,8 +11,10 @@ import { LoginPayloadDto } from './dto/login-payload.dto';
 export class LoginService {
 
     constructor(
+        @Inject(forwardRef(() => UsersService))
         private readonly userService: UsersService,
-        private jwtService: JwtService
+
+        private readonly jwtService: JwtService
     ) {}
 
     //Autentica um usuário
