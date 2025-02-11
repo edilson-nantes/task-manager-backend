@@ -17,7 +17,6 @@ export class CreateTableUser1739283099753 implements MigrationInterface {
                 id integer NOT NULL DEFAULT nextval('user_id_seq'::regclass),
                 name character varying COLLATE pg_catalog."default" NOT NULL,
                 email character varying COLLATE pg_catalog."default" NOT NULL,
-                type_user int NOT NULL,
                 password character varying COLLATE pg_catalog."default" NOT NULL,
                 created_at timestamp without time zone DEFAULT now() NOT NULL,
                 updated_at timestamp without time zone DEFAULT now() NOT NULL,
