@@ -36,19 +36,25 @@ export class TasksService {
         return tasks;
     }
 
-    //Atualiza uma tarefa
-    async updateTask (taskId: number, updateTaskDto: UpdateTaskDto, userId: number): Promise<TaskEntity> {
-        await this.usersService.findUserById(userId);
-
+    //Busca uma task pelo id e pelo id do usuário
+    async getTaskById(taskId: number, userId: number): Promise<TaskEntity> {
         const task = await this.taskRepository.findOne({
             where: {
-                id: taskId
+                id: taskId,
+                userId: userId
             }
-        });
+        })
 
         if (!task) {
             throw new NotFoundException('Task not found');
         }
+
+        return task;
+    }
+
+    //Atualiza uma tarefa
+    async updateTask (taskId: number, updateTaskDto: UpdateTaskDto, userId: number): Promise<TaskEntity> {
+        const task = await this.getTaskById(taskId, userId);
 
         return this.taskRepository.save({
             ...task,
@@ -58,18 +64,8 @@ export class TasksService {
 
     //Deleta uma tarefa
     async deleteTask (taskId: number, userId: number): Promise<void> {
-        await this.usersService.findUserById(userId);
+        const task = await this.getTaskById(taskId, userId);
 
-        const task = await this.taskRepository.findOne({
-            where: {
-                id: taskId
-            }
-        });
-
-        if (!task) {
-            throw new NotFoundException('Task not found');
-        }
-
-        await this.taskRepository.delete(taskId);
+        await this.taskRepository.delete(task.id);
     }
 }
