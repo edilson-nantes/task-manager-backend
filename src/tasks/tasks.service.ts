@@ -15,6 +15,7 @@ export class TasksService {
         private readonly usersService: UsersService,
     ) {}
 
+    //Cria uma nova tarefa
     async createTask (createTaskDto: CreateTaskDto, userId: number): Promise<TaskEntity> {
         await this.usersService.findUserById(userId);
 
@@ -24,6 +25,7 @@ export class TasksService {
         });
     }
     
+    //Busta todas as tarefas de um usuário
     async getAllTasks (userId: number): Promise<TaskEntity[]> {
         const tasks = await this.taskRepository.find({
             where: {
@@ -34,6 +36,7 @@ export class TasksService {
         return tasks;
     }
 
+    //Atualiza uma tarefa
     async updateTask (taskId: number, updateTaskDto: UpdateTaskDto, userId: number): Promise<TaskEntity> {
         await this.usersService.findUserById(userId);
 
@@ -53,6 +56,7 @@ export class TasksService {
         });
     }
 
+    //Deleta uma tarefa
     async deleteTask (taskId: number, userId: number): Promise<void> {
         await this.usersService.findUserById(userId);
 

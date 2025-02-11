@@ -1,5 +1,6 @@
 import { LoginPayloadDto } from "src/login/dto/login-payload.dto";
 
+//Converte um token JWT em um payload de login
 export const authToLoginPayload = (auth: string): LoginPayloadDto | undefined => {
     const authSplited = auth.split('.');
 

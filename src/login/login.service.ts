@@ -15,12 +15,14 @@ export class LoginService {
         private jwtService: JwtService
     ) {}
 
+    //Autentica um usuário
     async authenticateUser(loginDto: LoginDto): Promise<ReturnLoginDto> {
+        //Busca o usuário pelo email
         const user: UserEntity | undefined = await this.userService.findUserByEmail(loginDto.email)
             .catch(() => undefined);
 
+        //Verifica se o usuário existe e se a senha está correta
         const isMatch = await compare(loginDto.password, user?.password || '');
-
         if (!user || !isMatch) {
             throw new UnauthorizedException('Invalid credentials');
         }
