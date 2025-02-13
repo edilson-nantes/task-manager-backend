@@ -7,7 +7,7 @@ import { CreateTaskDto } from './dto/create-task.dto';
 import { ReturnTaskDto } from './dto/return-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
-@Controller('tasks')
+@Controller('api/tasks')
 @UseGuards(AuthGuard)
 export class TasksController {
 
