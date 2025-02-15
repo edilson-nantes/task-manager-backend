@@ -63,9 +63,11 @@ export class TasksService {
     }
 
     //Deleta uma tarefa
-    async deleteTask (taskId: number, userId: number): Promise<void> {
+    async deleteTask (taskId: number, userId: number): Promise<TaskEntity> {
         const task = await this.getTaskById(taskId, userId);
 
         await this.taskRepository.delete(task.id);
+
+        return task;
     }
 }

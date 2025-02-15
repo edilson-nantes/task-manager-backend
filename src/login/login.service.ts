@@ -30,6 +30,7 @@ export class LoginService {
         }
 
         return {
+            user: user.name,
             accessToken: this.jwtService.sign({ ...new LoginPayloadDto(user)}),
         }
     }

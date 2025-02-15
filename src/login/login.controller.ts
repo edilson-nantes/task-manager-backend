@@ -3,7 +3,7 @@ import { LoginService } from './login.service';
 import { LoginDto } from './dto/login.dto';
 import { ReturnLoginDto } from './dto/return-login.dto';
 
-@Controller('login')
+@Controller('api/login')
 export class LoginController {
 
     constructor(
