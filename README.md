@@ -139,10 +139,15 @@ JWT_SECRET=senhaMuitoGrandeParaNãoSerDescobertaabsdfgasdfhgdf
 JWT_EXPIRES_IN=7d
 ```
 
+- Digite o seguinte comando para rodar a aplicação:
+```bash
+npm run start:dev
+```
+
 - Por ultimo abra sua ferramenta de teste para API e digite o seguinte base URL:
 
 ```
-localhost:8080
+localhost:8080/api
 ```
 
 ---
