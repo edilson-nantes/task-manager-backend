@@ -1,99 +1,148 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Teste técnico SunHub
+Resolução do desafio fullstack do processo seletivo da SunHub. Neste repositório está contido apenas o backend, para entrar no frondend acesse: https://github.com/edilson-nantes/task-manager-frontend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<h1 align="center">
+<br>
+Desafio processo Seletivo SunHub
+</h1>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+</h1>
 
-## Description
+## Tecnologias
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+As tecnologias utilizadas foram:
 
-## Project setup
+- **Typescript** — Linguagem de programação usada para desenvolver a aplicação.
+
+- **NestJs** —  Framework Node.js para construir aplicações server-side escaláveis e eficientes.
+
+- **TypeORM** — Biblioteca de mapeamento objeto-relacional para TypeScript e JavaScript.
+
+- **PostgreSQL** — Banco de dados relacional para armazenar as informações.
+
+ ## Descrição
+ O projeto se baseia em construir um gerenciador de tarefas(Task Manager). Onde o backend consiste em uma API Rest com autenticação de usuários e funcionalidade de CRUD para as tarefas.
+
+- Usuário
+- Tarefas
+
+ ## Requisitos
+
+**User - {POST} /api/users/register:** 
+- Registro de novos usuários com os campos: name, email e password.
+- Valida a unicidade do email.
+- Retorna o token JWT após o registro para autenticação do usuário.
+- Exemplo de objeto a ser enviado:
+  ```bash
+    {
+      "name": "Edilson",
+      "email": "nantes.junior@gmail.com",
+      "password": "mysecretpassword"
+    }
+  ```
+
+**User - {POST} /api/login:** 
+- Autenticação de usuários com os campos: name e email.
+- Valida se as credenciais fornecidas são válidas
+- Retorna o token JWT após a validação das credenciais do usuário.
+- Exemplo de objeto a ser enviado:
+  ```bash
+    {
+      "email": "nantes.junior@gmail.com",
+      "password": "mysecretpassword"
+    }
+  ```
+
+**Task - {GET} /api/tasks:** 
+- Retorna todas as tarefas do usuário logado
+
+**Task - {POST} /api/tasks:** 
+- Cria uma nova tarefa com os campos: title, description, status
+- Exemplo de objeto a ser enviado:
+  ```bash
+    {
+      "title": "Titulo da tarefa",
+      "description": "Descrição da tarefa",
+      "status": "em progresso"
+    }
+  ```
+
+**Task - {PUT} /api/tasks/{id}:** 
+- Atualiza uma tarefa do usuário.
+- Exemplo de objeto a ser enviado (para esse caso, pode ser enviado o objeto completo ou parte dele):
+  ```bash
+    {
+      "title": "Titulo da tarefa",
+      "description": "Descrição da tarefa",
+      "status": "em progresso"
+    }
+  ```
+
+**Task - {DELETE} /api/tasks/{id}:** 
+- Deleta uma tarefa
+
+## Funcionalidades Desenvolvidas
+    - Autenticação de usuários usando um email e senha.
+    - Cadastro de novos usuários com informações de nome, email, senha.
+    - CRUD de tarefas para o gerenciamento de lista de tarefas.
+
+
+##  Download e Teste
+
+
+
+-  Instalar o [Git](https://git-scm.com/), [NodeJS](https://nodejs.org/pt-br/download/) + [npm](https://www.npmjs.com/get-npm), [Docker](https://www.docker.com/) e [Imagem docker do PostgreSQL](https://hub.docker.com/_/postgres):
 
 ```bash
-$ npm install
-```
+# Versões utilizadas no desenvolvimento.
+ node -v
+v22.14.0
 
-## Compile and run the project
+ npm -v
+10.9.2
+
+docker -v
+Docker version 27.2.0, build 3ab4256
+```
 
 ```bash
-# development
-$ npm run start
+# Clonar o repositório
+ git clone https://github.com/edilson-nantes/task-manager-backend/
 
-# watch mode
-$ npm run start:dev
+#Instalar o docker
+ sudo apt-get install ./docker-desktop-amd64.deb
 
-# production mode
-$ npm run start:prod
+#Baixar a imagem do postgres
+ docker pull postgres
+
+#Iniciar o container postgres(no desenvolvimento foram usadas as mesmas credenciais padrão da imagem)
+ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+
+#Entrar no diretório
+ cd task-manager-backend
+
+#Crie um arquivo com o nome .env e copie as informações do arquivo .env.development para ele.
+
+#Instalar as dependências
+ npm install
 ```
-
-## Run tests
+- As credenciais do arquivo .env podem ser alteradas de acordo com a necessidade, mas as credenciais usadas no desenvolvimento foram:
 
 ```bash
-# unit tests
-$ npm run test
+DB_HOST=localhost
+DB_USERNAME=postgres
+DB_PASSWORD=mysecretpassword
+DB_PORT=5432
+DB_DATABASE=tasks
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+JWT_SECRET=senhaMuitoGrandeParaNãoSerDescobertaabsdfgasdfhgdf
+JWT_EXPIRES_IN=7d
 ```
 
-## Deployment
+- Por ultimo abra sua ferramenta de teste para API e digite o seguinte base URL:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
+```
+localhost:8080
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
